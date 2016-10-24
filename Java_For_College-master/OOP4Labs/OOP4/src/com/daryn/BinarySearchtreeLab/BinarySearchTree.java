@@ -58,6 +58,53 @@ public class BinarySearchTree<E extends Comparable<E>> {
          System.out.println(node.data);
          printSub(node.right);
       }
-   }    
+   }   
+   
+    public boolean containsIterative(E element)
+    {
+        Node current = root;
+        
+        while(current != null)
+        {
+          int result = current.data.compareTo(element);
+          if(result == 0)
+          {
+              return true;
+          }
+          else if (result <0)
+              {
+                  current = current.right;
+              }
+          else 
+              current = current.left;
+              
+        }
+      return false;
+    }
+    
+    public boolean containsRecursive(E element)
+    {
+        Node current = root;
+          return containsRecursiveSub(current,element);
+              
+    }
+    
+    private boolean containsRecursiveSub(Node current, E element)
+    {
+        if (current != null){
+        int result = current.data.compareTo(element);
+          if(result == 0)
+          {
+              return true;
+          }
+          else if (result<0)
+              {
+                containsRecursiveSub(current.right,element);
+              }
+          else 
+                containsRecursiveSub(current.left,element);
+       }
+       return false;
+    }
    
 }
